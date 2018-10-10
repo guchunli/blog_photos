@@ -114,6 +114,7 @@ def compress(choose, des_dir, src_dir, file_list):
 
 def handle_photo():
     '''根据图片的文件名处理成需要的json格式的数据
+        
         -----------
         最后将data.json文件存到博客的source/photos文件夹下
         '''
@@ -133,7 +134,7 @@ def handle_photo():
                         'text': [info],
                             'type': ['image']
                             }
-                            }
+                                }
             list_info.append(new_dict)
         elif year_month != list_info[-1]['date']:  # 不是最后的一个日期，就新建一个dict
             new_dict = {"date": year_month, "arr":{'year': date.year,
@@ -152,7 +153,6 @@ def handle_photo():
     final_dict = {"list": list_info}
     with open("./data.json","w") as fp:
         json.dump(final_dict, fp)
-
 
 def cut_photo():
     """裁剪算法
