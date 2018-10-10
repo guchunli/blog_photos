@@ -136,39 +136,19 @@ def handle_photo():
                             }
                                 }
             list_info.append(new_dict)
-
-        else:  # 同一个日期
-            hasExist = 1
-            for j in range(len(file_list)):
-                if year_month == list_info[j]['date']:
-                    list_info[j]['arr']['link'].append(filename)
-                    list_info[j]['arr']['text'].append(info)
-                    list_info[j]['arr']['type'].append('image')
-                    hasExist = 2
-                    break
-            if hasExist != 2:
-                new_dict = {"date": year_month, "arr":{'year': date.year,
-                    'month': date.month,
-                        'link': [filename],
-                            'text': [info],
-                                'type': ['image']
+        elif year_month != list_info[-1]['date']:  # 不是最后的一个日期，就新建一个dict
+            new_dict = {"date": year_month, "arr":{'year': date.year,
+                'month': date.month,
+                    'link': [filename],
+                        'text': [info],
+                            'type': ['image']
                             }
-                        }
-                list_info.append(new_dict)
-            hasExist = 1
-#        elif year_month != list_info[-1]['date']:  # 不是最后的一个日期，就新建一个dict
-#            new_dict = {"date": year_month, "arr":{'year': date.year,
-#                'month': date.month,
-#                    'link': [filename],
-#                        'text': [info],
-#                            'type': ['image']
-#                            }
-#                    }
-#            list_info.append(new_dict)
-#        else:  # 同一个日期
-#            list_info[-1]['arr']['link'].append(filename)
-#            list_info[-1]['arr']['text'].append(info)
-#            list_info[-1]['arr']['type'].append('image')
+                    }
+            list_info.append(new_dict)
+        else:  # 同一个日期
+            list_info[-1]['arr']['link'].append(filename)
+            list_info[-1]['arr']['text'].append(info)
+            list_info[-1]['arr']['type'].append('image')
     list_info.reverse()  # 翻转
     final_dict = {"list": list_info}
     with open("./data.json","w") as fp:
