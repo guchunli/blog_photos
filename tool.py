@@ -71,7 +71,7 @@ def compress(choose, des_dir, src_dir, file_list):
 def compress_photo():
     '''调用压缩图片的函数
         '''
-    src_dir, des_dir = "photos/", "min_photos/"
+    src_dir, des_dir = "./photos/", "./min_photos/"
     
     if directory_exists(src_dir):
         if not directory_exists(src_dir):
