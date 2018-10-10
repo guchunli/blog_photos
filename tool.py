@@ -71,7 +71,7 @@ def compress(choose, des_dir, src_dir, file_list):
 def compress_photo():
     '''调用压缩图片的函数
         '''
-    src_dir, des_dir = "./photos/", "./min_photos/"
+    src_dir, des_dir = "photos/", "min_photos/"
     
     if directory_exists(src_dir):
         if not directory_exists(src_dir):
@@ -118,7 +118,7 @@ def handle_photo():
         -----------
         最后将data.json文件存到博客的source/photos文件夹下
         '''
-    src_dir, des_dir = "./photos/", "./min_photos/"
+    src_dir, des_dir = "photos/", "min_photos/"
     file_list = list_img_file(src_dir)
     list_info = []
     for i in range(len(file_list)):
@@ -129,21 +129,21 @@ def handle_photo():
         year_month = date_str[0:7]
         if i == 0:  # 处理第一个文件
             new_dict = {"date": year_month, "arr":{'year': date.year,
-                'month': date.month,
-                    'link': [filename],
-                        'text': [info],
-                            'type': ['image']
-                            }
-                                }
+                                                    'month': date.month,
+                                                    'link': [filename],
+                                                    'text': [info],
+                                                    'type': ['image']
+                                                    }
+                        }
             list_info.append(new_dict)
         elif year_month != list_info[-1]['date']:  # 不是最后的一个日期，就新建一个dict
             new_dict = {"date": year_month, "arr":{'year': date.year,
-                'month': date.month,
-                    'link': [filename],
-                        'text': [info],
-                            'type': ['image']
-                            }
-                    }
+                                                    'month': date.month,
+                                                    'link': [filename],
+                                                    'text': [info],
+                                                    'type': ['image']
+                                                    }
+                        }
             list_info.append(new_dict)
         else:  # 同一个日期
             list_info[-1]['arr']['link'].append(filename)
